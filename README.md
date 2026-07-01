@@ -49,12 +49,9 @@ A API subirá em:
 ---
 
 ## Divisão de Responsabilidades
-Preencha com os nomes reais:
 
-|Gabriel Deboni |Vitor Hugo Pedroso de Almeida| Descrição da contribuição |
-|---|---|---|
-| Gabriel Deboni | Controller/Rotas | Implementação das regras de negócio: CRUD de colaboradores, validações de CPF duplicado, atualização permitida (cargo/email), soft delete e persistência no `colaboradores.json`. |
-| Vitor Hugo Pedroso de Almeida | Service/ViaCEP + Middlewares | Consumidor do ViaCEP (`viacep.service.js`) + validações reutilizáveis no `validacao.middleware.js` e montagem das respostas/erros conforme regras do enunciado. |
+| Gabriel Deboni | Rotas | Implementação das regras de negócio: CRUD de colaboradores, atualização permitida (cargo/email), soft delete e persistência no `colaboradores.json`. |
+| Vitor Hugo Pedroso de Almeida | Service/ViaCEP + Middlewares + Controllers | Consumidor do ViaCEP (`viacep.service.js`) + validações reutilizáveis no `validacao.middleware.js`, validações de CPF duplicado e montagem das respostas/erros conforme regras do enunciado. |
 
 
 ---
@@ -208,18 +205,7 @@ Preencha com os nomes reais:
 
 ---
 
-## Checklist de testes manuais
-1. **Cadastro válido** (status inicial `Ativo` + endereço ViaCEP preenchido)
-2. **CPF duplicado**: cadastrar novamente o mesmo CPF deve retornar `400`
-3. **Campo vazio** (ex.: `nome: ""`) deve retornar `400`
-4. **E-mail sem `@`** deve retornar `400`
-5. **CEP inválido** (menos de 8 dígitos) deve retornar `400`
-6. **CEP não encontrado** (ViaCEP retorna `erro: true`) deve retornar `400`
-7. **Atualização tentando mudar CPF** deve retornar `403`
-8. **Atualização somente com cargo** funciona (mantém email antigo)
-9. **Atualização de email**: valida formato e salva
-10. **Soft delete**: após `DELETE`, status deve virar `Inativo` e registro deve continuar no JSON
-11. **GET com filtro de status**: `?status=Ativo` e `?status=Inativo` devem filtrar
+
 12. **Buscar não existente** (`GET /colaboradores/:id` e `DELETE /colaboradores/:id`) deve retornar `404`
 
 
